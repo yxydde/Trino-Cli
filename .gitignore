@@ -1,0 +1,11 @@
+# Ignore everything in this directory
+target
+build
+.classpath
+.settings
+.project
+.idea
+*.iml
+*.jar
+/bin
+project
