@@ -1,7 +1,21 @@
 # Presto-CLI
 Parameterized SQL in Presto on Presto CLI
+
+# Requirements
+* Mac OS X or Linux
+* Java 8 Update 92 or higher (8u92+), 64-bit
+* Maven 3.3.9+ (for building)
+
+# Building
 ```
-bin/presto-cli.sh --help
+sh build.sh
+```
+
+# Usage
+
+```
+$ bin/presto-cli.sh  --server host:8080 -f test.sql -d yesterday=$yesterday
+$ bin/presto-cli.sh --help
 NAME
         presto - Presto interactive console
 
