@@ -130,5 +130,5 @@ OPTIONS
             Display version information and exit
 
 
-	-d <key=value>  Variable subsitution to apply to hive commands. e.g. -d A=B
+	-d <key=value>  Variable subsitution to apply to presto-cli commands. e.g. -d A=B
 ```
