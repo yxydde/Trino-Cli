@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.facebook.presto</groupId>
             <artifactId>presto-cli</artifactId>
-            <version>0.198</version>
+            <version>0.200</version>
         </dependency>
     </dependencies>
 </project>

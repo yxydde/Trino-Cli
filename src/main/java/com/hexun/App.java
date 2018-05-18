@@ -86,7 +86,7 @@ public class App {
         File inFile = new File(filePath);
         List<String> lines = IOUtils.readLines(new FileInputStream(inFile));
         for (String line : lines) {
-            if (line.trim().startsWith("#")) {
+            if (line.trim().startsWith("#") || line.trim().startsWith("--")) {
                 continue;
             }
             strBuilder.append(line).append("\r\n");
