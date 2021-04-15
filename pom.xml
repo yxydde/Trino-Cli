@@ -21,9 +21,9 @@
             <version>2.4</version>
         </dependency>
         <dependency>
-            <groupId>com.facebook.presto</groupId>
-            <artifactId>presto-cli</artifactId>
-            <version>0.200</version>
+            <groupId>io.trino</groupId>
+            <artifactId>trino-cli</artifactId>
+            <version>355</version>
         </dependency>
     </dependencies>
 </project>

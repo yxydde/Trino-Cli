@@ -1,9 +1,12 @@
 package com.hexun;
 
-import com.facebook.presto.cli.Presto;
+import io.trino.cli.Trino;
 import org.apache.commons.io.IOUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -33,7 +36,7 @@ public class App {
                 soutArray(args);
                 soutArray(prestoArgs);
             }
-            Presto.main(prestoArgs);
+            Trino.main(prestoArgs);
             if ("-h".equals(args[0]) || "--help".equals(args[0])) {
                 System.out.println("\t-d <key=value>  Variable subsitution to apply to hive commands. e.g. -d A=B");
             }
