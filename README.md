@@ -14,6 +14,8 @@ sh build.sh
 # Usage
 
 ```
+$ cat test.sql
+select  count(1) from test_tb where day = ${yesterday}
 $ bin/presto-cli.sh  --server host:8080 -f test.sql -d yesterday=$yesterday
 $ bin/presto-cli.sh --help
 NAME
