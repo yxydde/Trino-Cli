@@ -6,11 +6,6 @@ Parameterized SQL in Presto on Presto CLI
 * Java 8 Update 92 or higher (8u92+), 64-bit
 * Maven 3.3.9+ (for building)
 
-# Building
-```
-sh build.sh
-```
-
 # Usage
 
 ```
