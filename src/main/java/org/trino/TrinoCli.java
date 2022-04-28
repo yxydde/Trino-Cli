@@ -1,5 +1,6 @@
-package com.hexun;
+package org.trino;
 
+import io.trino.cli.Console;
 import io.trino.cli.Trino;
 import org.apache.commons.io.IOUtils;
 
@@ -7,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -15,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * Hello world!
  */
-public class App {
+public class TrinoCli {
 
     private final static String F_OPT = "-f";
     private final static String D_OPT = "-d";
@@ -26,7 +28,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         String debug = System.getenv("PRESTO_CLI_DEBUG");
-        if (debug != null && "true".equals(debug.trim().toLowerCase())) {
+        if (debug != null && "true".equalsIgnoreCase(debug.trim())) {
             debug_mode = true;
         }
 
@@ -36,11 +38,14 @@ public class App {
                 soutArray(args);
                 soutArray(prestoArgs);
             }
-            Trino.main(prestoArgs);
             if ("-h".equals(args[0]) || "--help".equals(args[0])) {
-                System.out.println("\t-d <key=value>  Variable subsitution to apply to hive commands. e.g. -d A=B");
+                Trino.createCommandLine(new Console()).execute(args);
+                System.out.println("      -d <key=value>         Variable subsitution to apply to trino commands. e.g. -d A=B");
+            } else {
+                Trino.main(prestoArgs);
             }
-
+        } else {
+            Trino.main(args);
         }
     }
 
@@ -85,16 +90,8 @@ public class App {
     }
 
     private static String generateSqlScript(String filePath, Map<String, String> map) throws IOException {
-        StringBuilder strBuilder = new StringBuilder();
         File inFile = new File(filePath);
-        List<String> lines = IOUtils.readLines(new FileInputStream(inFile));
-        for (String line : lines) {
-            if (line.trim().startsWith("#") || line.trim().startsWith("--")) {
-                continue;
-            }
-            strBuilder.append(line).append("\r\n");
-        }
-        String content = strBuilder.toString();
+        String content = IOUtils.toString(new FileInputStream(inFile), Charset.forName("utf-8"));
         if (map != null && map.size() > 0) {
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 Pattern pattern = Pattern.compile("\\$\\{\\s*" + entry.getKey() + "\\s*\\}");
@@ -103,7 +100,7 @@ public class App {
             }
         }
         String out = getOutPutDir() + File.separator + inFile.getName();
-        IOUtils.write(content, new FileOutputStream(out));
+        IOUtils.write(content, new FileOutputStream(out), Charset.forName("utf-8"));
         return out;
     }
 
