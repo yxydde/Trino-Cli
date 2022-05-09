@@ -1,5 +1,5 @@
-# Presto-CLI
-Parameterized SQL in Presto on Presto CLI
+# Trino-Cli
+Parameterized SQL in Trino on Trino Cli
 
 # Requirements
 * Mac OS X or Linux
